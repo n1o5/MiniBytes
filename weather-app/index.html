@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <title>weather app</title>
+
+</head>
+<body>
+    <div class = "header">
+        <p> Built using HTML, CSS and Javascript</p>
+    </div>
+    <div class = 'card'>
+        <div class = 'search'>
+            <input type = 'text', placeholder = 'city name', spellcheck="false">
+            <button><img src = 'images/search.png'></button>
+        </div>
+        <div class = 'error'>
+            <p>Invalid city name </p>
+        </div>
+        <div class = 'weather'>
+            
+            <img src="images/mist.png" class = 'weather-icon'>
+            <h1 class = 'temp'>22*c</h1>
+            <h2 class = 'city'>Bengaluru</h2>
+        </div>
+        <div class = 'details'>
+            <div class = 'col'>
+                <img src="images/humidity.png">
+                <div>
+                    <p class = 'humidity'> 23% </p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class = 'col'>
+                <img src="images/wind.png">
+                <div>
+                    <p class = 'wind'> 23 kmph </p>
+                    <p>Wind speed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = 'info'>
+        <img src="images/sparkle.png" class="corner-img">
+        <p> Hello !! built using html, css and basic script</p>
+    </div>
+
+<script>
+   const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
+   const apikey = "a5d1546b150d09ed498e706a840256c4"
+
+   const searchbox = document.querySelector(".search input");
+   const searchbtn = document.querySelector(".search button");
+   const weathericon = document.querySelector(".weather-icon")
+   const weatherinfo = document.querySelector(".info p")
+   
+   async function checkweather(city){
+    const response = await fetch(apiurl + city +  `&appid=${apikey}`);
+    
+    if(response.status == 404){
+        document.querySelector(".error").style.display = "block";
+        document.querySelector(".weather").style.display = "none";
+        document.querySelector(".details").style.display = "none";
+        document.querySelector(".info").style.display = "none";
+
+    }
+    
+    else{
+    var data = await response.json();
+
+    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".temp").innerHTML = Math.round(data.main.temp)  + "°c";
+    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+    document.querySelector(".wind").innerHTML = data.wind.speed + " kmph";
+    if (data.weather[0].main == 'Clear'){
+        weathericon.src = "images/clear.png";
+        weatherinfo.textContent = "Quite the normal day";
+    }
+    if (data.weather[0].main == 'Clouds'){
+        weathericon.src = "images/clouds.png";
+        weatherinfo.textContent = "Cloudy but there's no chance of meatballs for now";
+    }
+    else if (data.weather[0].main == 'Rain'){
+        weathericon.src = "images/rain.png";
+        weatherinfo.textContent = "Make sure to carry an umbrella";
+   }
+   else if (data.weather[0].main == 'Drizzle'){
+        weathericon.src = "images/drizzle.png";
+        weatherinfo.textContent = "Make sure to carry an umbrella";
+   }
+      else if (data.weather[0].main == 'Mist'){
+        weathericon.src = "images/mist.png";
+        weatherinfo.textContent = "Quite the normal day";
+   }
+   else if (data.weather[0].main == 'Snow'){
+        weathericon.src = "images/snow.png";
+        weatherinfo.textContent = "Stay warm and comfy";
+   }
+   document.querySelector(".weather").style.display = "block";
+    document.querySelector(".details").style.display = "flex";
+    document.querySelector(".error").style.display = "none";
+    document.querySelector(".info").style.display = "block";
+
+    }
+}
+
+searchbtn.addEventListener("click", ()=>{
+    checkweather(searchbox.value);
+
+})
+</script>
+</body>
+</html>
