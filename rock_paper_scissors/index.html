@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper scissors</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="rps.js" defer></script>
+</head>
+<body>
+    <div class = "header">
+        <p> Built using html, css and javascript</p>
+    </div>
+
+    <div class="rounds">
+        <input type="number" placeholder="Number of rounds"  min="1" step="1" required></input>
+    </div>
+
+    <div class="options">
+        <button><img src="images/rock.png" alt="rock"></button>
+        <button><img src="images/paper.png" alt="paper"></button>
+        <button><img src="images/scissors.png" alt="scissors"></button>
+    </div>
+    <div class="scoreboard">
+            <div class="you">
+            <p>You</p>
+            <p id="you-score">0</p>
+            </div>
+
+            <div class="matches">
+            <p>Matches</p>
+            <p id="matches">0</p>
+            </div>
+
+            <div class="computer">
+            <p>Computer</p>
+            <p id="computer-score">0</p>
+            </div>
+
+                </div>
+            
+    <div class="output">
+    <p id="result">Have fun!</p>
+    </div>
+
+</body>
+</html>
