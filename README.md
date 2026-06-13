@@ -1,4 +1,4 @@
-# MiniBytes: Collection of Basic Projects in HTML, CSS, and JS
+## MiniBytes: Collection of Basic Projects in HTML, CSS, and JS
 A collection of beginner-friendly web development projects I built to understand HTML, CSS, and JavaScript
 - Etch-a-sketch: A browser-based drawing application that allows users to sketch by hovering over a customizable grid.
   - Live at https://etch-a-sketch-pi-lyart.vercel.app/
